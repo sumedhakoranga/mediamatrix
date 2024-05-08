@@ -9,10 +9,10 @@ function ImageGallery({ images }) {
   const [format, setFormat] = useState('webp'); 
   const [quality, setQuality] = useState(75); 
 
- const buildImageUrl = () => {
-  const imagePath = selectedImage.url.substring(selectedImage.url.lastIndexOf('/'));
-  const url = `https://cheerfull.netlify.app/.netlify/images/d=${imagePath}&w=${width * 10}&h=${height * 10}&fit=${fit}&position=${position}&fm=${format}&q=${quality}`;
-  console.log(url); 
+const buildImageUrl = () => {
+  const fullImageUrl = `https://cheerfull.netlify.app${selectedImage.url}`;
+  const url = `https://cheerfull.netlify.app/.netlify/images?url=${encodeURIComponent(fullImageUrl)}&w=${width * 10}&h=${height * 10}&fit=${fit}&position=${position}&fm=${format}&q=${quality}`;
+  console.log("Generated Image URL:", url);
   return url;
 };
 
@@ -38,13 +38,13 @@ function ImageGallery({ images }) {
       </div>
       {selectedImage && (
         <div style={{ marginTop: '20px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={{ width: '60%', minHeight: '300px', padding: '10px', border: '5px dashed blue', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-           <img
-            src={buildImageUrl()}
-            alt={selectedImage.alt}
-            style={{ maxWidth: '100%', maxHeight: '300px', borderRadius: '10px' }}
-            onError={(e) => { e.target.onerror = null; e.target.src = '/img2.png'; }}
-          />
+          <div style={{ width: '60%', minHeight: '600px', padding: '10px', border: '5px dashed blue', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <img
+              src={buildImageUrl()}
+              alt={selectedImage.alt}
+              style={{ maxWidth: '100%', maxHeight: '300px', borderRadius: '10px' }}
+              onError={(e) => { e.target.onerror = null; e.target.src = '/img2.png'; }}
+            />
           </div>
           <div style={{ marginTop: '10px' }}>
             <label>
@@ -104,6 +104,9 @@ function ImageGallery({ images }) {
                 onChange={(e) => setQuality(e.target.value)}
               />
             </label>
+          </div>
+          <div style={{ marginTop: '20px' }}>
+            <p>Current Image URL: {buildImageUrl()}</p>
           </div>
         </div>
       )}
