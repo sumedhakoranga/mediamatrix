@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+body{
+    background-color: #fbfcff;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -31,6 +35,7 @@
 h1{
   text-align: center;
   text-decoration: underline;
+  color: #144d0c;
 }
 
 @keyframes App-logo-spin {
