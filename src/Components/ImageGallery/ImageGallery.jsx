@@ -43,7 +43,7 @@ function ImageGallery({ images }) {
             src={buildImageUrl()}
             alt={selectedImage.alt}
             style={{ maxWidth: '100%', maxHeight: '300px', borderRadius: '10px' }}
-            onError={(e) => { e.target.onerror = null; e.target.src = 'default-image.png'; }}
+            onError={(e) => { e.target.onerror = null; e.target.src = '/img2.png'; }}
           />
           </div>
           <div style={{ marginTop: '10px' }}>
