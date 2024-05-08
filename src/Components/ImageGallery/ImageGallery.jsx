@@ -12,7 +12,6 @@ function ImageGallery({ images }) {
 const buildImageUrl = () => {
   const fullImageUrl = `https://cheerfull.netlify.app${selectedImage.url}`;
   const url = `https://cheerfull.netlify.app/.netlify/images?url=${encodeURIComponent(fullImageUrl)}&w=${width * 10}&h=${height * 10}&fit=${fit}&position=${position}&fm=${format}&q=${quality}`;
-  console.log("Generated Image URL:", url);
   return url;
 };
 
@@ -38,7 +37,7 @@ const buildImageUrl = () => {
       </div>
       {selectedImage && (
         <div style={{ marginTop: '20px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <div style={{ width: '60%', minHeight: '600px', padding: '10px', border: '5px dashed blue', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <div style={{ width: '60%', minHeight: '600px', padding: '10px', border: '10px solid black', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <img
               src={buildImageUrl()}
               alt={selectedImage.alt}
@@ -105,7 +104,7 @@ const buildImageUrl = () => {
               />
             </label>
           </div>
-          <div style={{ marginTop: '20px' }}>
+          <div style={{ marginTop: '20px', textAlign:'center' }}>
             <p>Current Image URL: {buildImageUrl()}</p>
           </div>
         </div>
